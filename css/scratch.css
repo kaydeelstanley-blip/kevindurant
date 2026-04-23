@@ -1,0 +1,366 @@
+/* ══════════════════════════════════════════════
+   Inside My Mind — scratch.css
+   Aesthetic: Warm editorial journal, refined & personal
+   Fonts: Playfair Display (headings) + DM Sans (body)
+   ══════════════════════════════════════════════ */
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap');
+
+:root {
+  --cream:      #f7f3ee;
+  --warm-white: #fdfaf7;
+  --paper:      #fffdf8;
+  --ink:        #2a2420;
+  --ink-light:  #6b5e54;
+  --gold:       #c09a5b;
+  --gold-light: #e8d5b0;
+  --blush:      #f0e4d8;
+  --sage:       #c8d4c0;
+  --lavender:   #e4dff0;
+  --dot:        #e4dbd2;
+  --border:     #ede6de;
+}
+
+/* ── BASE ─────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 300;
+  color: var(--ink);
+  line-height: 1.75;
+  background-color: var(--cream);
+  background-image:
+    radial-gradient(var(--dot) 1.2px, transparent 1.2px);
+  background-size: 20px 20px;
+  /* subtle paper grain via repeating-conic-gradient trick */
+  background-blend-mode: normal;
+}
+
+/* ── NAV ──────────────────────────────────────── */
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  padding: 14px 24px;
+  background: rgba(253, 250, 247, 0.88);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+}
+
+.nav a {
+  text-decoration: none;
+  color: var(--ink-light);
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 5px 12px;
+  border-radius: 99px;
+  transition: background 0.18s, color 0.18s;
+}
+
+.nav a:hover {
+  background: var(--gold-light);
+  color: var(--ink);
+}
+
+/* ── HERO ─────────────────────────────────────── */
+.hero {
+  text-align: center;
+  padding: 110px 24px 90px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* decorative ink-wash watercolor blob behind the title */
+.hero::before {
+  content: "";
+  position: absolute;
+  width: 520px;
+  height: 320px;
+  background: radial-gradient(ellipse at center, var(--blush) 0%, transparent 70%);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+.hero h1 {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(2.6rem, 6vw, 4rem);
+  font-weight: 600;
+  line-height: 1.15;
+  margin: 0 0 16px;
+  position: relative;
+  letter-spacing: -0.01em;
+}
+
+/* thin golden rule under the title */
+.hero h1::after {
+  content: "";
+  display: block;
+  width: 56px;
+  height: 2px;
+  background: var(--gold);
+  margin: 14px auto 0;
+  border-radius: 2px;
+}
+
+.hero p {
+  color: var(--ink-light);
+  font-size: 1.05rem;
+  font-style: italic;
+  font-family: 'Playfair Display', serif;
+  max-width: 480px;
+  margin: 14px auto 0;
+  position: relative;
+}
+
+/* ── SECTION ──────────────────────────────────── */
+.section {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 64px 24px;
+}
+
+/* ── HEADINGS ─────────────────────────────────── */
+h2 {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 2rem;
+  font-weight: 400;
+  color: var(--ink);
+  margin: 0 0 6px;
+  position: relative;
+  display: inline-block;
+}
+
+/* golden underline accent */
+h2::after {
+  content: "";
+  display: block;
+  width: 36px;
+  height: 2px;
+  background: var(--gold);
+  margin-top: 8px;
+  border-radius: 2px;
+}
+
+h3 {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.15rem;
+  font-weight: 400;
+  color: var(--ink);
+  margin: 0 0 10px;
+}
+
+.section > p {
+  color: var(--ink-light);
+  font-size: 0.95rem;
+  margin: 10px 0 28px;
+}
+
+/* ── LISTS ────────────────────────────────────── */
+ul, ol { padding-left: 20px; }
+li { margin-bottom: 4px; }
+
+/* ── CARDS ────────────────────────────────────── */
+.card {
+  background: var(--paper);
+  padding: 28px 30px;
+  border-radius: 16px;
+  border: 1px solid var(--border);
+  margin-top: 20px;
+  box-shadow: 0 2px 16px rgba(42,36,32,0.05);
+}
+
+/* ── STICKY NOTES ─────────────────────────────── */
+
+/* Remove default list styling from the outer ol */
+#tabs > ol {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 22px;
+  align-items: start;
+}
+
+.note {
+  list-style: none;
+  padding: 20px 20px 20px 22px;
+  border-radius: 3px 14px 14px 14px;
+  border: 1px solid var(--border);
+  position: relative;
+  box-shadow:
+    3px 5px 18px rgba(42,36,32,0.09),
+    inset 0 1px 0 rgba(255,255,255,0.6);
+  transition: transform 0.22s ease, box-shadow 0.22s ease;
+}
+
+/* unique pastel tones */
+.note:nth-child(1) { background: #fff9db; }   /* butter */
+.note:nth-child(2) { background: #fef2e4; }   /* peach  */
+.note:nth-child(3) { background: #f0edfc; }   /* lavender */
+.note:nth-child(4), .note:nth-child(5) { background: #eef6f0; } /* mint */
+
+/* divs in the list that aren't <li> also get note treatment */
+#tabs > ol > div.note {
+  border-radius: 3px 14px 14px 14px;
+}
+
+/* pin */
+.pinned::before {
+  content: "📌";
+  position: absolute;
+  top: -11px;
+  left: -7px;
+  font-size: 17px;
+  filter: drop-shadow(0 1px 1px rgba(0,0,0,0.15));
+}
+
+/* slight random tilt per card */
+.note:nth-child(1) { transform: rotate(-1.2deg); }
+.note:nth-child(2) { transform: rotate(0.7deg); }
+.note:nth-child(3) { transform: rotate(-0.5deg); }
+.note:nth-child(4) { transform: rotate(1deg); }
+
+/* override hover: straighten and lift */
+.note:hover {
+  transform: rotate(0deg) translateY(-5px) scale(1.02);
+  box-shadow:
+    6px 12px 28px rgba(42,36,32,0.13),
+    inset 0 1px 0 rgba(255,255,255,0.6);
+  z-index: 5;
+}
+
+.note h2 {
+  font-size: 1rem;
+  font-family: 'Playfair Display', serif;
+  font-weight: 600;
+  color: var(--ink);
+  margin: 0 0 10px;
+  display: block;
+}
+
+/* remove the gold rule inside notes */
+.note h2::after { display: none; }
+
+.note ul, .note ol {
+  font-size: 0.88rem;
+  color: var(--ink-light);
+  padding-left: 16px;
+  margin: 0;
+}
+
+.note li { margin-bottom: 3px; }
+
+/* ── COLLAGE GRID ─────────────────────────────── */
+.collage-grid {
+  column-count: 3;
+  column-gap: 18px;
+  padding: 4px;
+}
+
+.collage-item {
+  display: inline-block;
+  width: 100%;
+  margin-bottom: 18px;
+  background: var(--paper);
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  box-shadow: 2px 4px 14px rgba(42,36,32,0.08);
+  transition: transform 0.22s ease, box-shadow 0.22s ease;
+  break-inside: avoid;
+}
+
+.collage-item img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: filter 0.22s ease;
+}
+
+/* caption */
+.collage-item p {
+  margin: 0;
+  padding: 9px 12px 11px;
+  font-size: 0.78rem;
+  font-style: italic;
+  font-family: 'Playfair Display', serif;
+  color: var(--ink-light);
+  letter-spacing: 0.01em;
+}
+
+.collage-item:hover {
+  transform: translateY(-5px) rotate(-0.5deg);
+  box-shadow: 4px 10px 24px rgba(42,36,32,0.14);
+}
+
+.collage-item:hover img {
+  filter: brightness(1.03) saturate(1.05);
+}
+
+/* ── TABLEAU ──────────────────────────────────── */
+.tableau-container {
+  width: 100%;
+  max-width: 900px;
+  margin: 24px auto 0;
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+
+/* ── FOOTER ───────────────────────────────────── */
+.footer {
+  text-align: center;
+  padding: 36px 24px;
+  border-top: 1px solid var(--border);
+  color: var(--ink-light);
+  font-size: 0.82rem;
+  letter-spacing: 0.04em;
+}
+
+.footer p { margin: 0; }
+
+/* ── RESPONSIVE ───────────────────────────────── */
+@media (max-width: 900px) {
+  .collage-grid { column-count: 2; }
+  #tabs > ol { grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); }
+}
+
+@media (max-width: 600px) {
+  .collage-grid { column-count: 1; }
+  #tabs > ol { grid-template-columns: 1fr; }
+  .hero { padding: 80px 20px 60px; }
+  h2 { font-size: 1.6rem; }
+}
+.game-link {
+  display: inline-block;
+  margin-top: 16px;
+  padding: 10px 22px;
+  background: var(--gold-light);
+  color: var(--ink);
+  text-decoration: none;
+  font-size: 0.88rem;
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  border-radius: 99px;
+  border: 1px solid var(--gold);
+  transition: background 0.18s, transform 0.18s;
+}
+
+.game-link:hover {
+  background: var(--gold);
+  transform: translateX(3px);
+}
